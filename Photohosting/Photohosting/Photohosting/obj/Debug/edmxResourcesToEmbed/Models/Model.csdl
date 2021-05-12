@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Photohosting" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="Int32" Nullable="false" />
+    <Property Name="Login" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="IsAdmin" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Phone_Number" Type="Int32" />
+    <Property Name="BdayDate" Type="DateTime" Precision="0" />
+    <Property Name="Name" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Descs" Relationship="Self.FK_Descs_Accounts" FromRole="Accounts" ToRole="Descs" />
+    <NavigationProperty Name="Interest" Relationship="Self.FK_Interests_Accounts" FromRole="Accounts" ToRole="Interests" />
+  </EntityType>
+  <EntityType Name="Desc">
+    <Key>
+      <PropertyRef Name="DescID" />
+    </Key>
+    <Property Name="DescID" Type="Int32" Nullable="false" />
+    <Property Name="DName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DFileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UID" Type="Int32" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Descs_Accounts" FromRole="Descs" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="Interest">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="Int32" Nullable="false" />
+    <Property Name="Anime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Recepies" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Sports" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Movies" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Cartoons" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Tattoo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Music" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Athetics" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Traveling" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Humor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Psychology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Games" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Wallpapers" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="ExtraFileName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Interests_Accounts" FromRole="Interests" ToRole="Accounts" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="PID" />
+    </Key>
+    <Property Name="PID" Type="Int32" Nullable="false" />
+    <Property Name="PicFileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="MainColor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="MainTopic" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <Association Name="FK_Descs_Accounts">
+    <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Descs" Type="Self.Desc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="Descs">
+        <PropertyRef Name="UID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interests_Accounts">
+    <End Role="Accounts" Type="Self.Account" Multiplicity="1" />
+    <End Role="Interests" Type="Self.Interest" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="Interests">
+        <PropertyRef Name="UID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="PhotohostingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Accounts" EntityType="Self.Account" />
+    <EntitySet Name="Descs" EntityType="Self.Desc" />
+    <EntitySet Name="Interests" EntityType="Self.Interest" />
+    <EntitySet Name="Pictures" EntityType="Self.Picture" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <AssociationSet Name="FK_Descs_Accounts" Association="Self.FK_Descs_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Descs" EntitySet="Descs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interests_Accounts" Association="Self.FK_Interests_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Interests" EntitySet="Interests" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

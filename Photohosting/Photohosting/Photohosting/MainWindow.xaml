@@ -1,0 +1,41 @@
+﻿<Window x:Class="Photohosting.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Photohosting" 
+        xmlns:viewmodels="clr-namespace:Photohosting.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
+        mc:Ignorable="d"
+        WindowState="{Binding CurrentWindowState}"
+        Title="Photohosting" WindowStyle="None">
+    <Grid Background="#ffdadada">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.95*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Login" Margin="5 0 5 0" Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatLightBgButton}"></Button>
+                <Button Content="Registration" Margin="5 0 5 0" Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatLightBgButton}" Command="{Binding RegisterCommand}"></Button>
+                <Separator Style="{StaticResource MaterialDesignDarkSeparator}"   Margin="0 0 0 0" Width="30"  VerticalAlignment="Top">
+                    <Separator.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </Separator.LayoutTransform>
+                </Separator>
+                <Button   Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding MinimizeCommand}">
+                    <materialDesign:PackIcon Kind="WindowMinimize"/>
+                </Button>
+                <Button Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding MaximizeCommand}">
+                    <materialDesign:PackIcon Kind="WindowMaximize"/>
+                </Button>
+                <Button   Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding CloseCommand}">
+                    <materialDesign:PackIcon Kind="Close"/>
+                </Button>
+                
+            </StackPanel>
+        </Grid>
+        <ContentControl  Content="{Binding SelectedViewModel, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" />
+    </Grid>
+</Window>

@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Photohosting" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Accounts">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="int" Nullable="false" />
+    <Property Name="Login" Type="nvarchar" MaxLength="10" />
+    <Property Name="Password" Type="nvarchar" MaxLength="10" />
+    <Property Name="IsAdmin" Type="int" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="20" />
+    <Property Name="Phone_Number" Type="int" />
+    <Property Name="BdayDate" Type="date" />
+    <Property Name="Name" Type="nchar" MaxLength="15" />
+    <Property Name="LastName" Type="nchar" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="Descs">
+    <Key>
+      <PropertyRef Name="DescID" />
+    </Key>
+    <Property Name="DescID" Type="int" Nullable="false" />
+    <Property Name="DName" Type="nvarchar" MaxLength="50" />
+    <Property Name="DFileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="UID" Type="int" />
+  </EntityType>
+  <EntityType Name="Interests">
+    <Key>
+      <PropertyRef Name="UID" />
+    </Key>
+    <Property Name="UID" Type="int" Nullable="false" />
+    <Property Name="Anime" Type="nchar" MaxLength="10" />
+    <Property Name="Recepies" Type="nchar" MaxLength="10" />
+    <Property Name="Sports" Type="nchar" MaxLength="10" />
+    <Property Name="Movies" Type="nchar" MaxLength="10" />
+    <Property Name="Cartoons" Type="nchar" MaxLength="10" />
+    <Property Name="Tattoo" Type="nchar" MaxLength="10" />
+    <Property Name="Music" Type="nchar" MaxLength="10" />
+    <Property Name="Athetics" Type="nchar" MaxLength="10" />
+    <Property Name="Traveling" Type="nchar" MaxLength="10" />
+    <Property Name="Humor" Type="nchar" MaxLength="10" />
+    <Property Name="IT" Type="nchar" MaxLength="10" />
+    <Property Name="Psychology" Type="nchar" MaxLength="10" />
+    <Property Name="Games" Type="nchar" MaxLength="10" />
+    <Property Name="Wallpapers" Type="nchar" MaxLength="10" />
+    <Property Name="ExtraFileName" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="PID" />
+    </Key>
+    <Property Name="PID" Type="int" Nullable="false" />
+    <Property Name="PicFileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="MainColor" Type="nvarchar" MaxLength="10" />
+    <Property Name="MainTopic" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <Association Name="FK_Descs_Accounts">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="Descs" Type="Self.Descs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="Descs">
+        <PropertyRef Name="UID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Interests_Accounts">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
+    <End Role="Interests" Type="Self.Interests" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="Accounts">
+        <PropertyRef Name="UID" />
+      </Principal>
+      <Dependent Role="Interests">
+        <PropertyRef Name="UID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище PhotohostingContainer">
+    <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Descs" EntityType="Self.Descs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Interests" EntityType="Self.Interests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Descs_Accounts" Association="Self.FK_Descs_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Descs" EntitySet="Descs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Interests_Accounts" Association="Self.FK_Interests_Accounts">
+      <End Role="Accounts" EntitySet="Accounts" />
+      <End Role="Interests" EntitySet="Interests" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
