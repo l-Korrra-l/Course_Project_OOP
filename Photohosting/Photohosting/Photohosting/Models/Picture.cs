@@ -14,9 +14,20 @@ namespace Photohosting.Models
     
     public partial class Picture
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Picture()
+        {
+            this.Comments = new HashSet<Comment>();
+        }
+    
         public int PID { get; set; }
         public string PicFileName { get; set; }
-        public string MainColor { get; set; }
+        public byte[] Pic { get; set; }
         public string MainTopic { get; set; }
+        public string Description { get; set; }
+        public string Name { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
     }
 }

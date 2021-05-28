@@ -1,0 +1,55 @@
+﻿<Window x:Class="Photohosting.Views.AuthorizationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Photohosting.Views"
+        xmlns:viewmodels="clr-namespace:Photohosting.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:AuthorizationWindowViewModel}"
+        mc:Ignorable="d"
+        WindowState="{Binding CurrentWindowState}"
+        Title="AuthorizationWindow" Height="500" Width="400" WindowStyle="None" Background="{x:Null}">
+    <Grid Background="#FFEAEAEA" >
+        <Grid.Effect>
+            <DropShadowEffect/>
+        </Grid.Effect>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.7*"/>
+            <RowDefinition Height="0.1*"/>
+            <RowDefinition Height="0.1*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.3*"/>
+                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.3*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Column="2">
+              <!--  <Button Content="Login" Margin="5 0 5 0" Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatLightBgButton}"></Button>
+                <Button Content="Registration" Margin="5 0 5 0" Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatLightBgButton}" Command="{Binding RegisterCommand}"></Button>
+               --> <Separator Style="{StaticResource MaterialDesignDarkSeparator}"   Margin="0 0 0 0" Width="30"  VerticalAlignment="Top">
+                    <Separator.LayoutTransform>
+                        <RotateTransform Angle="90" />
+                    </Separator.LayoutTransform>
+                </Separator>
+                <Button   Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding MinimizeCommand}">
+                    <materialDesign:PackIcon Kind="WindowMinimize"/>
+                </Button>
+                <!--<Button Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding MaximizeCommand}">
+                    <materialDesign:PackIcon Kind="WindowMaximize"/>
+                </Button>-->
+                <Button   Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding CloseCommand}">
+                    <materialDesign:PackIcon Kind="Close"/>
+                </Button>
+            </StackPanel>
+            <TextBlock Text="Photohosting" Foreground="#FF7763C5" FontFamily="Modern No. 20" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Column="1"/>
+        </Grid>
+        <ContentControl  Content="{Binding SelectedViewModel, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" />
+        <Button Grid.Row="2" Content="Registration" Margin="15 0 15 0" Height="30" Width="200" Style="{StaticResource MaterialDesignFlatLightBgButton}" Command="{Binding ToLoginCommand}" Visibility="{Binding ToLoginVisibility, UpdateSourceTrigger=PropertyChanged}">
+        </Button>
+        <Button Grid.Row="2" Content="Login" Margin="15 0 15 0" Height="30" Width="200" Style="{StaticResource MaterialDesignFlatLightBgButton}" Command="{Binding ToRegisterCommand}" Visibility="{Binding ToRegistrationVisibility, UpdateSourceTrigger=PropertyChanged}">
+        </Button>
+    </Grid>
+</Window>

@@ -10,5 +10,11 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=LAPTOP-N0QMVJ9U;Initial Catalog=Photohosting;Integrated Security=True</Value>
     </Setting>
+    <Setting Name="IdUser" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DefUser" Type="System.String" Scope="User">
+      <Value Profile="(Default)">..\..\SystemImages\user.png</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -26,26 +26,24 @@ namespace Photohosting.ViewModels
                 OnPropertyChanged("Login");
             }
         }
-
+        private string password = "";
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
         public LoginViewModel()
         {
         }
 
-        private RelayCommand registerCommand;
-        public RelayCommand RegisterCommand
-        {
-            get
-            {
-                return registerCommand ??
-                (registerCommand = new RelayCommand(obj =>
-                {
-                   App.Current.MainWindow.DataContext = new MainWindowViewModel(new RegisterViewModel());
-                }));
-            }
-        }
+        public void CloseLoginWindow() => CloseWindow();
 
         private RelayCommand loginCommand;
-        public RelayCommand LoginCommand
+        public RelayCommand LogInCommand
         {
             get
             {
@@ -54,13 +52,16 @@ namespace Photohosting.ViewModels
                     {
                         try
                         {
-                            var passwordBox = obj as PasswordBox;
-                            string password = passwordBox.Password;
-                            password = AccountsRepository.HashPassword(password);
-                            if (AccountsRepository.ContainsAccount(Login, password))
+                            //var passwordBox = obj as PasswordBox;
+                            //string password = passwordBox.Password;
+                            string password = AccountsRepository.HashPassword(Password);
+                            if (AccountsRepository.ContainsAccount(Login, password) || AccountsRepository.ContainsAccount(Login, Password))
                             {
+                                Properties.Settings.Default.IdUser = AccountsRepository.GetAccount(Login).UID;
+                                MainWindow _wind = new MainWindow();
+                                _wind.Show();
+                                AuthorizationWindowViewModel.Close();
 
-                                App.Current.MainWindow.DataContext = new MainWindowViewModel(new MainViewModel(AccountsRepository.GetAccount(Login)));
                             }
                             else MessageBox.Show("No such account found");
                         }

@@ -7,44 +7,38 @@
           <ScalarProperty Name="UID" ColumnName="UID" />
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Password" ColumnName="Password" />
-          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
           <ScalarProperty Name="Email" ColumnName="Email" />
           <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
           <ScalarProperty Name="BdayDate" ColumnName="BdayDate" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Pic" ColumnName="Pic" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Descs">
-      <EntityTypeMapping TypeName="Photohosting.Desc">
-        <MappingFragment StoreEntitySet="Descs">
-          <ScalarProperty Name="DescID" ColumnName="DescID" />
-          <ScalarProperty Name="DName" ColumnName="DName" />
-          <ScalarProperty Name="DFileName" ColumnName="DFileName" />
-          <ScalarProperty Name="UID" ColumnName="UID" />
+    <EntitySetMapping Name="Comments">
+      <EntityTypeMapping TypeName="Photohosting.Comment">
+        <MappingFragment StoreEntitySet="Comments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="PId" ColumnName="PId" />
+          <ScalarProperty Name="UName" ColumnName="UName" />
+          <ScalarProperty Name="UPic" ColumnName="UPic" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="Interests">
-      <EntityTypeMapping TypeName="Photohosting.Interest">
-        <MappingFragment StoreEntitySet="Interests">
-          <ScalarProperty Name="UID" ColumnName="UID" />
-          <ScalarProperty Name="Anime" ColumnName="Anime" />
-          <ScalarProperty Name="Recepies" ColumnName="Recepies" />
-          <ScalarProperty Name="Sports" ColumnName="Sports" />
-          <ScalarProperty Name="Movies" ColumnName="Movies" />
-          <ScalarProperty Name="Cartoons" ColumnName="Cartoons" />
-          <ScalarProperty Name="Tattoo" ColumnName="Tattoo" />
-          <ScalarProperty Name="Music" ColumnName="Music" />
-          <ScalarProperty Name="Athetics" ColumnName="Athetics" />
-          <ScalarProperty Name="Traveling" ColumnName="Traveling" />
-          <ScalarProperty Name="Humor" ColumnName="Humor" />
-          <ScalarProperty Name="IT" ColumnName="IT" />
-          <ScalarProperty Name="Psychology" ColumnName="Psychology" />
-          <ScalarProperty Name="Games" ColumnName="Games" />
-          <ScalarProperty Name="Wallpapers" ColumnName="Wallpapers" />
-          <ScalarProperty Name="ExtraFileName" ColumnName="ExtraFileName" />
+    <EntitySetMapping Name="Errors">
+      <EntityTypeMapping TypeName="Photohosting.Error">
+        <MappingFragment StoreEntitySet="Errors">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Solved" ColumnName="Solved" />
+          <ScalarProperty Name="UId" ColumnName="UId" />
+          <ScalarProperty Name="UName" ColumnName="UName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -53,8 +47,10 @@
         <MappingFragment StoreEntitySet="Picture">
           <ScalarProperty Name="PID" ColumnName="PID" />
           <ScalarProperty Name="PicFileName" ColumnName="PicFileName" />
-          <ScalarProperty Name="MainColor" ColumnName="MainColor" />
+          <ScalarProperty Name="Pic" ColumnName="Pic" />
           <ScalarProperty Name="MainTopic" ColumnName="MainTopic" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

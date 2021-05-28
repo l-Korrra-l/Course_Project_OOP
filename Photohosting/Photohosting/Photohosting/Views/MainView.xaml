@@ -1,73 +1,80 @@
-﻿<UserControl x:Class="Photohosting.Views.MainView"
+﻿
+    
+<UserControl x:Class="Photohosting.Views.MainView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Photohosting.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
              mc:Ignorable="d" 
              d:DataContext="{d:DesignInstance Type=vm:MainViewModel}"
-              xmlns:vm="clr-namespace:Photohosting.ViewModels"
-             d:DesignHeight="450" d:DesignWidth="800">
+             xmlns:vm="clr-namespace:Photohosting.ViewModels"
+             d:DesignHeight="450" d:DesignWidth="800" MinHeight="450">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0.05*"/>
+            <RowDefinition Height="0.2*"/>
             <RowDefinition Height="0.9*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="0.5*" />
+            <ColumnDefinition Width="0.05*"/>
+        </Grid.ColumnDefinitions>
+        <materialDesign:ColorZone Grid.Column="0" Grid.ColumnSpan="3" Mode="PrimaryMid" Height="50" Width="auto" MinWidth="700">
+            <DockPanel>
+                <StackPanel Orientation="Horizontal" materialDesign:RippleAssist.IsCentered="True" Margin="0 10 0 0">
+                   
+                    <materialDesign:ColorZone HorizontalAlignment="Center" Width="600" Mode="Standard" Padding="8 4 8 4" CornerRadius="2" Panel.ZIndex="1" Margin="16 0 0 0" materialDesign:ShadowAssist.ShadowDepth="Depth1">
+                        <Grid Height="20">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Button Style="{DynamicResource MaterialDesignToolButton}" Grid.Column="0" Height="25" Width="25" Margin="-5 -3 0 0" Command="{Binding SearchCommand}" CommandParameter="{Binding Path=Tag,ElementName=TbxSearch}">
+                                <materialDesign:PackIcon  Kind="{Binding Path=Tag,ElementName=TbxSearch}" Opacity=".56" Width="20" Height="20"/>
+                            </Button>
+                            <TextBox Grid.Column="1" Margin="8 0 0 0" materialDesign:HintAssist.Hint="Build a search bar" materialDesign:TextFieldAssist.DecorationVisibility="Hidden" Text="{Binding SearchText, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            BorderThickness="0" MinWidth="200" VerticalAlignment="Center" x:Name="TbxSearch">
+                                <TextBox.Style>
+                                    <Style TargetType="TextBox">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=TbxSearch, Path=IsFocused}" Value="True">
+                                                <Setter Property="Tag" Value="WindowClose"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding ElementName=TbxSearch, Path=IsFocused}" Value="False">
+                                                <Setter Property="Tag" Value="Magnify"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBox.Style>
+                            </TextBox>
+                        </Grid>
 
-
-        <Grid Grid.Row="1">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                <Image Source="..\SystemImages\logo.jpg" Width="30" />
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="43.5" />
-                        <ColumnDefinition Width="9.3"/>
-                    </Grid.ColumnDefinitions>
-                    <TextBox Grid.Column="0"
-                    x:Name="TbxSearch"
-                    Margin="8,202,43.3,202"
-                    materialDesign:HintAssist.Hint="Build a search bar"
-                    materialDesign:TextFieldAssist.DecorationVisibility="Hidden"
-                    BorderThickness="0"
-                    MinWidth="200"
-                    Width="0.9*"
-                    VerticalAlignment="Center" CaretBrush="{x:Null}" Grid.ColumnSpan="2" >
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=TbxSearch, Path=IsFocused}" Value="True">
-                                        <Setter Property="Tag" Value="WindowClose"/>
-                                    </DataTrigger>
-                                    <DataTrigger Binding="{Binding ElementName=TbxSearch, Path=IsFocused}" Value="False">
-                                        <Setter Property="Tag" Value="Magnify"/>
-                                    </DataTrigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-
-                    <Button Grid.Column="1"
-                       x:Name="btnClick"
-                       Cursor="Hand"
-                       HorizontalAlignment="Right" Grid.ColumnSpan="2" Margin="0,194,-0.4,194">
-                        <materialDesign:PackIcon Kind="{Binding Path=Tag,ElementName=TbxSearch}"
-                                       x:Name="icon"
-                                       Opacity=".56" 
-                                       RenderTransformOrigin="0.5,0.5" Width="21" Height="18" >
-                            <materialDesign:PackIcon.RenderTransform>
-                                <TransformGroup>
-                                    <ScaleTransform/>
-                                    <SkewTransform/>
-                                    <RotateTransform Angle="810.628"/>
-                                    <TranslateTransform/>
-                                </TransformGroup>
-                            </materialDesign:PackIcon.RenderTransform>
-                        </materialDesign:PackIcon>
-                    </Button>
-                </Grid>
-            </StackPanel>
-        </Grid>
+                    </materialDesign:ColorZone>
+                    <ComboBox SelectedIndex="0" Margin="20 -10 0 0" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Standard" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesignPaper}" Text="Topic"
+        BorderBrush="{DynamicResource MaterialDesignPaper}" SelectedItem="{Binding Topic, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
+                        <ComboBoxItem Content="All"/>
+                        <ComboBoxItem Content="Anime"/>
+                        <ComboBoxItem Content="Cartoons"/>
+                        <ComboBoxItem Content="Games"/>
+                        <ComboBoxItem Content="IT"/>
+                        <ComboBoxItem Content="Memes"/>
+                        <ComboBoxItem Content="Movies"/>
+                        <ComboBoxItem Content="Music"/>
+                        <ComboBoxItem Content="Recepies"/>
+                        <ComboBoxItem Content="Sport"/>
+                        <ComboBoxItem Content="Tatoo"/>
+                        <ComboBoxItem Content="Traveling"/>
+                        <ComboBoxItem Content="Wallpapers"/>
+                    </ComboBox>
+                </StackPanel>
+            </DockPanel>
+        </materialDesign:ColorZone>
+        <ContentControl  Content="{Binding SelectedViewModel, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
+        <TextBlock Margin="20" HorizontalAlignment="Center" VerticalAlignment="Top" TextAlignment="Center" Text="{Binding ErrorMes}" Foreground="red" Width="500" Style="{StaticResource MaterialDesignBody2TextBlock}" Height="35" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"/>
     </Grid>
+    
 </UserControl>

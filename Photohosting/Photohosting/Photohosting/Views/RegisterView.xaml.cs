@@ -21,10 +21,15 @@ namespace Photohosting.Views
     /// </summary>
     public partial class RegisterView : UserControl
     {
+        RegisterViewModel a = new RegisterViewModel();
         public RegisterView()
         {
             InitializeComponent();
-            DataContext = new RegisterViewModel();
+            DataContext = a;
+        }
+        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            a.Password = PassBox.Password;
         }
     }
 }

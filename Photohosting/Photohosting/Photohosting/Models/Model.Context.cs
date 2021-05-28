@@ -26,8 +26,8 @@ namespace Photohosting.Models
         }
     
         public virtual DbSet<Account> Accounts { get; set; }
-        public virtual DbSet<Desc> Descs { get; set; }
-        public virtual DbSet<Interest> Interests { get; set; }
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Error> Errors { get; set; }
         public virtual DbSet<Picture> Pictures { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }

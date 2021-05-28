@@ -1,0 +1,253 @@
+﻿<Window x:Class="Photohosting.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Photohosting.Views"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:vm="clr-namespace:Photohosting.ViewModels"
+        d:DataContext="{d:DesignInstance Type=vm:MainWindowViewModel}"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1024" WindowStyle="None">
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="0"/>
+    </WindowChrome.WindowChrome>
+    <Window.Resources>
+        <Storyboard x:Key="OpenMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMain">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="GridMain">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="50"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="StackPanelMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="250"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="HomeMenuItem">
+                <EasingDoubleKeyFrame KeyTime="0" Value="-250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="-250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.7" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleX)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleTransform.ScaleY)" Storyboard.TargetName="button">
+                <EasingDoubleKeyFrame KeyTime="0" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:1.5" Value="1"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="CloseMenu">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="GridMain">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.Y)" Storyboard.TargetName="GridMain">
+                <EasingDoubleKeyFrame KeyTime="0" Value="50"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[3].(TranslateTransform.X)" Storyboard.TargetName="StackPanelMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="250"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="0"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource OpenMenu}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard x:Name="CloseMenu_BeginStoryboard" Storyboard="{StaticResource CloseMenu}"/>
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid Background="#FFC2AEE7" >
+        <StackPanel x:Name="StackPanelMenu" Width="250" HorizontalAlignment="Left" Margin="-250 0 0 0" RenderTransformOrigin="0.5,0.5">
+            <StackPanel.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </StackPanel.RenderTransform>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="100" HorizontalAlignment="Center">
+                <Button x:Name="button" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" BorderBrush="{x:Null}" Padding="0" Width="80" Height="80" Margin="10" RenderTransformOrigin="0.5,0.5">
+                    <Button.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Button.RenderTransform>
+                    <Button.Background>
+                        <ImageBrush ImageSource="{Binding Path=BinImage}" Stretch="UniformToFill"/>
+                    </Button.Background>
+                </Button>
+            </StackPanel>
+            <ListView UseLayoutRounding="True" x:Name="Menu" >
+                
+                    <ListViewItem x:Name="HomeMenuItem" Height="60" RenderTransformOrigin="0.5,0.5" >
+                    <ListViewItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ListViewItem.RenderTransform>
+                    <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Home" TextDecorations="None">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
+                            <TextBlock Text="Home" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                        </StackPanel>
+                    </Hyperlink>
+                </ListViewItem>
+
+
+                <ListViewItem x:Name="AccountMenuItem" Height="60" RenderTransformOrigin="0.5,0.5" >
+                    <ListViewItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ListViewItem.RenderTransform>
+                    <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Account" TextDecorations="None">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Cog" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
+                            <TextBlock Text="Account settings" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                        </StackPanel>
+                    </Hyperlink>
+                </ListViewItem>
+                <ListViewItem x:Name="AddMenuItem" Height="60" RenderTransformOrigin="0.5,0.5" >
+                        <ListViewItem.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ListViewItem.RenderTransform>
+                    <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Add" TextDecorations="None">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="PhotoLibrary" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
+                            <TextBlock Text="Add Picture" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                        </StackPanel>
+                    </Hyperlink>
+                </ListViewItem>
+                    <ListViewItem x:Name="AboutUsMenuItem" Height="60" RenderTransformOrigin="0.5,0.5" Visibility="{Binding NoAdminVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                        <ListViewItem.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ListViewItem.RenderTransform>
+                    <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Contacts" TextDecorations="None">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Information" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
+                            <TextBlock Text="Contacts" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                        </StackPanel>
+                    </Hyperlink>
+                </ListViewItem>
+                <ListViewItem x:Name="Errors" Height="60" RenderTransformOrigin="0.5,0.5" Visibility="{Binding AdminVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListViewItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ListViewItem.RenderTransform>
+                    <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Errors" TextDecorations="None">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="Error" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
+                            <TextBlock Text="Errors" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                        </StackPanel>
+                    </Hyperlink>
+                </ListViewItem>
+                <ListViewItem x:Name="Profiles" Height="60" RenderTransformOrigin="0.5,0.5" Visibility="{Binding AdminVisibility, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <ListViewItem.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </ListViewItem.RenderTransform>
+                    <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Profiles" TextDecorations="None">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="AccountGroup" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
+                            <TextBlock Text="Profiles" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                        </StackPanel>
+                    </Hyperlink>
+                </ListViewItem>
+                <ListViewItem x:Name="LogOutMenuItem" Height="60" RenderTransformOrigin="0.5,0.5" >
+                        <ListViewItem.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform/>
+                                <SkewTransform/>
+                                <RotateTransform/>
+                                <TranslateTransform/>
+                            </TransformGroup>
+                        </ListViewItem.RenderTransform>
+                    <Hyperlink Command="{Binding LogOutCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" TextDecorations="None">
+                        <StackPanel Orientation="Horizontal" Margin="10 0">
+                            <materialDesign:PackIcon Kind="LogoutVariant" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
+                            <TextBlock Text="Log out" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                        </StackPanel>
+                    </Hyperlink>
+                </ListViewItem>
+            </ListView>
+        </StackPanel>
+        <Grid x:Name="GridMain" Background="#FFFBFBFB" Width="1024" RenderTransformOrigin="0.5,0.5">
+            <Grid.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Grid.RenderTransform>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.1*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="ButtonCloseMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="0" Width="20" Height="20" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15 20 0 0" Command="{Binding CloseMenuCommand}" Visibility="{Binding CloseMenuVisibility, UpdateSourceTrigger=PropertyChanged}">
+                <materialDesign:PackIcon Kind="Menu" Foreground="#FF151318"/>
+            </Button>
+            <Button x:Name="ButtonOpenMenu" Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}" Grid.Row="0" Width="20" Height="20" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="15 20 0 0" Command="{Binding OpenMenuCommand}" Visibility="{Binding OpenMenuVisibility, UpdateSourceTrigger=PropertyChanged}">
+                <materialDesign:PackIcon Kind="Menu" Foreground="#FF151318"/>
+            </Button>
+            <ContentControl  Content="{Binding SelectedViewModel, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" />
+
+        </Grid>
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" Height="40" HorizontalAlignment="Right" Margin="10">
+            <Separator Style="{StaticResource MaterialDesignDarkSeparator}"   Margin="0 0 0 0" Width="30"  VerticalAlignment="Top">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </Separator.LayoutTransform>
+            </Separator>
+            <Button   Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding MinimizeCommand}">
+                <materialDesign:PackIcon Kind="WindowMinimize" Foreground="#FF151318"/>
+            </Button>
+            <Button Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding MaximizeCommand}">
+                <materialDesign:PackIcon Kind="WindowMaximize" Foreground="#FF151318"/>
+            </Button>
+            <Button   Height="auto" Width="auto" Style="{StaticResource MaterialDesignFlatButton}" Command="{Binding CloseCommand}">
+                <materialDesign:PackIcon Kind="Close" Foreground="#FF151318"/>
+            </Button>
+            
+        </StackPanel>
+        
+        
+    </Grid>
+</Window>

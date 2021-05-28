@@ -1,4 +1,5 @@
 ﻿using Photohosting.Commands;
+using Photohosting.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -44,8 +45,11 @@ namespace Photohosting.ViewModels
         }
 
 
+        protected void CloseWindow() => Close?.Invoke();
 
+        public bool CanClose() => true;
 
+        public Action Close { get; set; }
 
         #endregion
     }

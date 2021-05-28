@@ -33,5 +33,29 @@ namespace Photohosting.Properties {
                 return ((string)(this["PhotohostingConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int IdUser {
+            get {
+                return ((int)(this["IdUser"]));
+            }
+            set {
+                this["IdUser"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("..\\..\\SystemImages\\user.png")]
+        public string DefUser {
+            get {
+                return ((string)(this["DefUser"]));
+            }
+            set {
+                this["DefUser"] = value;
+            }
+        }
     }
 }

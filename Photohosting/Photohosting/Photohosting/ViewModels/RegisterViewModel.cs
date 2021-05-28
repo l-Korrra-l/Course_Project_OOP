@@ -27,7 +27,16 @@ namespace Photohosting.ViewModels
                 OnPropertyChanged("Login");
             }
         }
-
+        private string password = "";
+        public string Password
+        {
+            get { return password; }
+            set
+            {
+                password = value;
+                OnPropertyChanged(nameof(Password));
+            }
+        }
         private bool ValidatePassword(string password)
         {
             string pattern = "(?!^[0-9]*$)(?!^[a-zA-Z]*$)^([a-zA-Z0-9]{8,15})$"; //8-15 символов, минимум одно число, большая и маленькая буква
@@ -67,19 +76,21 @@ namespace Photohosting.ViewModels
                     {
                         try
                         {
-                            var passwordBox = obj as PasswordBox;
-                            string password = passwordBox.Password;
-                            password = AccountsRepository.HashPassword(password);
-                            if (!AccountsRepository.ContainsAccount(Login, password) && !Validate(obj))
+                            //var passwordBox = obj as PasswordBox;
+                            //string password = passwordBox.Password;
+                            string password = AccountsRepository.HashPassword(Password);
+                            if (!(AccountsRepository.ContainsAccount(Login, password) || AccountsRepository.ContainsAccount(Login, Password)) && !Validate(obj))
                             {
 
                                 Account acc = new Account();
                                 acc.Login = Login;
                                 acc.Password = password;
-                                acc.IsAdmin = 0;
+                                acc.IsAdmin = false;
                                 AccountsRepository.AddAccount(acc);
 
-                                App.Current.MainWindow.DataContext = new MainWindowViewModel(new MainViewModel());
+                                MainWindow _wind = new MainWindow();
+                                _wind.Show();
+                                AuthorizationWindowViewModel.Close();
                             }
                             else MessageBox.Show("No such account found");
                         }

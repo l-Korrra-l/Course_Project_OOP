@@ -5,11 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 using Photohosting.Models;
+using System.Windows.Forms;
+using System.Collections.ObjectModel;
 
 namespace Photohosting.Models
 {
-    public static class AccountsRepository
+    public class AccountsRepository
     {
+
+        private ApplicationContext db1;
+        public AccountsRepository(ApplicationContext context)
+        {
+            this.db1 = context;
+        }
         static PhotohostingEntities db;
         static AccountsRepository()
         {
@@ -40,7 +48,16 @@ namespace Photohosting.Models
             else
                 return null;
         }
-        
+        public static ObservableCollection<Account> GetAccounts()
+        {
+            ObservableCollection<Account> accounts = new ObservableCollection<Account>();
+            if (db.Accounts.Count() != 0)
+            {
+                foreach (Account acc in db.Accounts.ToList())
+                    accounts.Add(acc);
+            }
+                return accounts;
+        }
         public static bool ContainsAccount(Account acc)
         {
             if (acc != null)
@@ -77,6 +94,18 @@ namespace Photohosting.Models
             Byte[] hashedBytes = sha.ComputeHash(inputBytes);
 
             return BitConverter.ToString(hashedBytes);
+        }
+
+        public static void Update(Account acc)
+        {
+            db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+        }
+
+        public static void Delete(int id)
+        {
+            db.Accounts.Remove(GetAccount(id));
+            db.SaveChanges();
         }
     }
 }

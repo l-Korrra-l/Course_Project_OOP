@@ -17,21 +17,25 @@ namespace Photohosting.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Account()
         {
-            this.Descs = new HashSet<Desc>();
+            this.Comments = new HashSet<Comment>();
+            this.Errors = new HashSet<Error>();
         }
     
         public int UID { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public int IsAdmin { get; set; }
         public string Email { get; set; }
         public Nullable<int> Phone_Number { get; set; }
         public Nullable<System.DateTime> BdayDate { get; set; }
         public string Name { get; set; }
         public string LastName { get; set; }
+        public byte[] Pic { get; set; }
+        public string ImagePath { get; set; }
+        public Nullable<bool> IsAdmin { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Desc> Descs { get; set; }
-        public virtual Interest Interest { get; set; }
+        public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Error> Errors { get; set; }
     }
 }

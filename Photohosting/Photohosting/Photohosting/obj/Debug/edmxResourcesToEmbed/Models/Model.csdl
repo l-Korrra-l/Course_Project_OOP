@@ -4,58 +4,56 @@
     <Key>
       <PropertyRef Name="UID" />
     </Key>
-    <Property Name="UID" Type="Int32" Nullable="false" />
+    <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Login" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
     <Property Name="Password" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
-    <Property Name="IsAdmin" Type="Int32" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
     <Property Name="Phone_Number" Type="Int32" />
     <Property Name="BdayDate" Type="DateTime" Precision="0" />
     <Property Name="Name" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
     <Property Name="LastName" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="Descs" Relationship="Self.FK_Descs_Accounts" FromRole="Accounts" ToRole="Descs" />
-    <NavigationProperty Name="Interest" Relationship="Self.FK_Interests_Accounts" FromRole="Accounts" ToRole="Interests" />
+    <Property Name="Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsAdmin" Type="Boolean" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Accounts" FromRole="Accounts" ToRole="Comments" />
+    <NavigationProperty Name="Errors" Relationship="Self.FK_Errors_Accounts" FromRole="Accounts" ToRole="Errors" />
   </EntityType>
-  <EntityType Name="Desc">
+  <EntityType Name="Comment">
     <Key>
-      <PropertyRef Name="DescID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="DescID" Type="Int32" Nullable="false" />
-    <Property Name="DName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="DFileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="UID" Type="Int32" />
-    <NavigationProperty Name="Account" Relationship="Self.FK_Descs_Accounts" FromRole="Descs" ToRole="Accounts" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UId" Type="Int32" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PId" Type="Int32" Nullable="false" />
+    <Property Name="UName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UPic" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Comments_Accounts" FromRole="Comments" ToRole="Accounts" />
+    <NavigationProperty Name="Picture" Relationship="Self.FK_Comments_Picture" FromRole="Comments" ToRole="Picture" />
   </EntityType>
-  <EntityType Name="Interest">
+  <EntityType Name="Error">
     <Key>
-      <PropertyRef Name="UID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="UID" Type="Int32" Nullable="false" />
-    <Property Name="Anime" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Recepies" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Sports" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Movies" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Cartoons" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Tattoo" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Music" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Athetics" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Traveling" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Humor" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="IT" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Psychology" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Games" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Wallpapers" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="ExtraFileName" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
-    <NavigationProperty Name="Account" Relationship="Self.FK_Interests_Accounts" FromRole="Interests" ToRole="Accounts" />
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Message" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Solved" Type="Boolean" />
+    <Property Name="UId" Type="Int32" />
+    <Property Name="UName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Account" Relationship="Self.FK_Errors_Accounts" FromRole="Errors" ToRole="Accounts" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
       <PropertyRef Name="PID" />
     </Key>
-    <Property Name="PID" Type="Int32" Nullable="false" />
-    <Property Name="PicFileName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-    <Property Name="MainColor" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PicFileName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="MainTopic" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Picture" FromRole="Picture" ToRole="Comments" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -67,43 +65,59 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <Association Name="FK_Descs_Accounts">
+  <Association Name="FK_Comments_Accounts">
     <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
-    <End Role="Descs" Type="Self.Desc" Multiplicity="*" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Accounts">
         <PropertyRef Name="UID" />
       </Principal>
-      <Dependent Role="Descs">
-        <PropertyRef Name="UID" />
+      <Dependent Role="Comments">
+        <PropertyRef Name="UId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Interests_Accounts">
-    <End Role="Accounts" Type="Self.Account" Multiplicity="1" />
-    <End Role="Interests" Type="Self.Interest" Multiplicity="0..1" />
+  <Association Name="FK_Errors_Accounts">
+    <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
+    <End Role="Errors" Type="Self.Error" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Accounts">
         <PropertyRef Name="UID" />
       </Principal>
-      <Dependent Role="Interests">
-        <PropertyRef Name="UID" />
+      <Dependent Role="Errors">
+        <PropertyRef Name="UId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Comments_Picture">
+    <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Picture">
+        <PropertyRef Name="PID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="PId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="PhotohostingEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Accounts" EntityType="Self.Account" />
-    <EntitySet Name="Descs" EntityType="Self.Desc" />
-    <EntitySet Name="Interests" EntityType="Self.Interest" />
+    <EntitySet Name="Comments" EntityType="Self.Comment" />
+    <EntitySet Name="Errors" EntityType="Self.Error" />
     <EntitySet Name="Pictures" EntityType="Self.Picture" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <AssociationSet Name="FK_Descs_Accounts" Association="Self.FK_Descs_Accounts">
+    <AssociationSet Name="FK_Comments_Accounts" Association="Self.FK_Comments_Accounts">
       <End Role="Accounts" EntitySet="Accounts" />
-      <End Role="Descs" EntitySet="Descs" />
+      <End Role="Comments" EntitySet="Comments" />
     </AssociationSet>
-    <AssociationSet Name="FK_Interests_Accounts" Association="Self.FK_Interests_Accounts">
+    <AssociationSet Name="FK_Errors_Accounts" Association="Self.FK_Errors_Accounts">
       <End Role="Accounts" EntitySet="Accounts" />
-      <End Role="Interests" EntitySet="Interests" />
+      <End Role="Errors" EntitySet="Errors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Comments_Picture" Association="Self.FK_Comments_Picture">
+      <End Role="Picture" EntitySet="Pictures" />
+      <End Role="Comments" EntitySet="Comments" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

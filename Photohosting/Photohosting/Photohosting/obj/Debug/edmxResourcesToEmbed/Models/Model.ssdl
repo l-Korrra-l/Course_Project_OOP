@@ -4,54 +4,50 @@
     <Key>
       <PropertyRef Name="UID" />
     </Key>
-    <Property Name="UID" Type="int" Nullable="false" />
+    <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Login" Type="nvarchar" MaxLength="10" />
     <Property Name="Password" Type="nvarchar" MaxLength="10" />
-    <Property Name="IsAdmin" Type="int" Nullable="false" />
     <Property Name="Email" Type="nvarchar" MaxLength="20" />
     <Property Name="Phone_Number" Type="int" />
     <Property Name="BdayDate" Type="date" />
     <Property Name="Name" Type="nchar" MaxLength="15" />
     <Property Name="LastName" Type="nchar" MaxLength="15" />
+    <Property Name="Pic" Type="varbinary(max)" />
+    <Property Name="ImagePath" Type="varchar(max)" />
+    <Property Name="IsAdmin" Type="bit" />
   </EntityType>
-  <EntityType Name="Descs">
+  <EntityType Name="Comments">
     <Key>
-      <PropertyRef Name="DescID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="DescID" Type="int" Nullable="false" />
-    <Property Name="DName" Type="nvarchar" MaxLength="50" />
-    <Property Name="DFileName" Type="nvarchar" MaxLength="50" />
-    <Property Name="UID" Type="int" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UId" Type="int" />
+    <Property Name="Message" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PId" Type="int" Nullable="false" />
+    <Property Name="UName" Type="nvarchar(max)" />
+    <Property Name="UPic" Type="varbinary(max)" />
+    <Property Name="Date" Type="datetime" />
   </EntityType>
-  <EntityType Name="Interests">
+  <EntityType Name="Errors">
     <Key>
-      <PropertyRef Name="UID" />
+      <PropertyRef Name="Id" />
     </Key>
-    <Property Name="UID" Type="int" Nullable="false" />
-    <Property Name="Anime" Type="nchar" MaxLength="10" />
-    <Property Name="Recepies" Type="nchar" MaxLength="10" />
-    <Property Name="Sports" Type="nchar" MaxLength="10" />
-    <Property Name="Movies" Type="nchar" MaxLength="10" />
-    <Property Name="Cartoons" Type="nchar" MaxLength="10" />
-    <Property Name="Tattoo" Type="nchar" MaxLength="10" />
-    <Property Name="Music" Type="nchar" MaxLength="10" />
-    <Property Name="Athetics" Type="nchar" MaxLength="10" />
-    <Property Name="Traveling" Type="nchar" MaxLength="10" />
-    <Property Name="Humor" Type="nchar" MaxLength="10" />
-    <Property Name="IT" Type="nchar" MaxLength="10" />
-    <Property Name="Psychology" Type="nchar" MaxLength="10" />
-    <Property Name="Games" Type="nchar" MaxLength="10" />
-    <Property Name="Wallpapers" Type="nchar" MaxLength="10" />
-    <Property Name="ExtraFileName" Type="nchar" MaxLength="10" />
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Message" Type="varchar(max)" Nullable="false" />
+    <Property Name="Solved" Type="bit" />
+    <Property Name="UId" Type="int" />
+    <Property Name="UName" Type="varchar(max)" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
       <PropertyRef Name="PID" />
     </Key>
-    <Property Name="PID" Type="int" Nullable="false" />
-    <Property Name="PicFileName" Type="nvarchar" MaxLength="50" />
-    <Property Name="MainColor" Type="nvarchar" MaxLength="10" />
+    <Property Name="PID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PicFileName" Type="nvarchar(max)" />
+    <Property Name="Pic" Type="varbinary(max)" />
     <Property Name="MainTopic" Type="nchar" MaxLength="10" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Name" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>
@@ -63,43 +59,59 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <Association Name="FK_Descs_Accounts">
+  <Association Name="FK_Comments_Accounts">
     <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
-    <End Role="Descs" Type="Self.Descs" Multiplicity="*" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Accounts">
         <PropertyRef Name="UID" />
       </Principal>
-      <Dependent Role="Descs">
-        <PropertyRef Name="UID" />
+      <Dependent Role="Comments">
+        <PropertyRef Name="UId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_Interests_Accounts">
-    <End Role="Accounts" Type="Self.Accounts" Multiplicity="1" />
-    <End Role="Interests" Type="Self.Interests" Multiplicity="0..1" />
+  <Association Name="FK_Comments_Picture">
+    <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
+    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Picture">
+        <PropertyRef Name="PID" />
+      </Principal>
+      <Dependent Role="Comments">
+        <PropertyRef Name="PId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Errors_Accounts">
+    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
+    <End Role="Errors" Type="Self.Errors" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Accounts">
         <PropertyRef Name="UID" />
       </Principal>
-      <Dependent Role="Interests">
-        <PropertyRef Name="UID" />
+      <Dependent Role="Errors">
+        <PropertyRef Name="UId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <EntityContainer Name="Хранилище PhotohostingContainer">
     <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Descs" EntityType="Self.Descs" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="Interests" EntityType="Self.Interests" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Errors" EntityType="Self.Errors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Descs_Accounts" Association="Self.FK_Descs_Accounts">
+    <AssociationSet Name="FK_Comments_Accounts" Association="Self.FK_Comments_Accounts">
       <End Role="Accounts" EntitySet="Accounts" />
-      <End Role="Descs" EntitySet="Descs" />
+      <End Role="Comments" EntitySet="Comments" />
     </AssociationSet>
-    <AssociationSet Name="FK_Interests_Accounts" Association="Self.FK_Interests_Accounts">
+    <AssociationSet Name="FK_Comments_Picture" Association="Self.FK_Comments_Picture">
+      <End Role="Picture" EntitySet="Picture" />
+      <End Role="Comments" EntitySet="Comments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Errors_Accounts" Association="Self.FK_Errors_Accounts">
       <End Role="Accounts" EntitySet="Accounts" />
-      <End Role="Interests" EntitySet="Interests" />
+      <End Role="Errors" EntitySet="Errors" />
     </AssociationSet>
   </EntityContainer>
 </Schema>
