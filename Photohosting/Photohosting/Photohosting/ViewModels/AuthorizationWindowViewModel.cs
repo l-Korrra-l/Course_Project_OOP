@@ -7,6 +7,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Runtime.CompilerServices;
 using System.ComponentModel;
+using Photohosting.Models;
+using Photohosting.Views;
+using System.Runtime.Serialization.Json;
+using System.IO;
 
 namespace Photohosting.ViewModels
 {
@@ -16,7 +20,15 @@ namespace Photohosting.ViewModels
 
         public AuthorizationWindowViewModel()
         {
-            SelectedViewModel = new LoginViewModel();
+            GetAccountId();
+            if (Properties.Settings.Default.IdUser < 0)
+                SelectedViewModel = new LoginViewModel();
+            else
+            {
+                MainWindow _wind = new MainWindow();
+                _wind.Show();
+                Close();
+            }
         }
 
         public AuthorizationWindowViewModel(BaseViewModel d)
@@ -127,6 +139,33 @@ namespace Photohosting.ViewModels
         {
             var window = System.Windows.Application.Current.Windows;
             window[0].Close();
+        }
+        public int GetAccountId()
+        {
+            try
+            {
+                Account acc = new Account();
+                DataContractJsonSerializer jsonForm = new DataContractJsonSerializer(typeof(Account));
+                using (FileStream f = new FileStream(@"..\..\Models\CurrentUser.json", FileMode.OpenOrCreate))
+                {
+                    acc = (Account)jsonForm.ReadObject(f);
+                }
+                Properties.Settings.Default.IdUser = acc.UID;
+                return acc.UID;
+            }
+            catch (Exception ex)
+            {
+                return -1;
+                MessageBox.Show(ex.Message);
+            }
+        }
+        public void SetCurrentUser(Account acc)
+        {
+            DataContractJsonSerializer jsonForm = new DataContractJsonSerializer(typeof(Account));
+            using (FileStream fs = new FileStream(@"..\..\Models\CurrentUser.json", FileMode.OpenOrCreate))
+            {
+                jsonForm.WriteObject(fs, acc);
+            }
         }
     }
 }

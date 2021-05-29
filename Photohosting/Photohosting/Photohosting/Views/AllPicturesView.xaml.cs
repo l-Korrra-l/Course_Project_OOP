@@ -26,4 +26,6 @@ namespace Photohosting.Views
             InitializeComponent();
         }
     }
+
+ 
 }

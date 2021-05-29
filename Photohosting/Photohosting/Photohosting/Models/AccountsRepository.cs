@@ -13,17 +13,15 @@ namespace Photohosting.Models
     public class AccountsRepository
     {
 
-        private ApplicationContext db1;
-        public AccountsRepository(ApplicationContext context)
-        {
-            this.db1 = context;
-        }
         static PhotohostingEntities db;
         static AccountsRepository()
         {
             db = new PhotohostingEntities();
         }
 
+        public AccountsRepository()
+        {
+        }
 
         public static void AddAccount(Account acc)
         {
@@ -81,7 +79,19 @@ namespace Photohosting.Models
             }
             return false;
         }
-
+        public static Account GetAccount(string login, string password)
+        {
+            if (login != null && password != null)
+            {
+                if (db.Accounts.Count() == 0)
+                    return new Account();
+                else return new Account();
+                if (db.Accounts.Where(p => (p.Login == login && p.Password == password)).Count() > 0)
+                    return db.Accounts.Where(p => (p.Login == login && p.Password == password)).Single();
+                else return new Account();
+            }
+            else return new Account();
+        }
         public static int GetAccountsCount()
         {
             return db.Accounts.Count();
@@ -96,6 +106,48 @@ namespace Photohosting.Models
             return BitConverter.ToString(hashedBytes);
         }
 
+
+
+        public IEnumerable<Account> GetItemList()
+        {
+            ObservableCollection<Account> accounts = new ObservableCollection<Account>();
+            if (db.Accounts.Count() != 0)
+            {
+                foreach (Account acc in db.Accounts.ToList())
+                    accounts.Add(acc);
+            }
+            return accounts;
+        }
+
+        public static Account GetItem(int id)
+        {
+            if (db.Accounts.Where(p => (p.UID == id)).Count() != 0)
+                return db.Accounts.Where(p => (p.UID == id)).Single();
+            else
+                return null;
+        }
+
+        public static void Create(Account acc)
+        {
+            if (db.Accounts.Where(p => (acc.Login == p.Login)).Count() < 1)
+            {
+                db.Accounts.Add(acc);
+                db.SaveChanges();
+            }
+        }
+
+
+        public void Save()
+        {
+            db.SaveChanges();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
+        }
+
+
         public static void Update(Account acc)
         {
             db.Entry(acc).State = System.Data.Entity.EntityState.Modified;
@@ -107,5 +159,9 @@ namespace Photohosting.Models
             db.Accounts.Remove(GetAccount(id));
             db.SaveChanges();
         }
+
+
+
+        
     }
 }

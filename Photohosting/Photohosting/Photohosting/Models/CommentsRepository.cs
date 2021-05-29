@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Photohosting.Models
 {
-    class CommentsRepository
+    class CommentsRepository :IRepository<CommentsRepository>
     {
         static PhotohostingEntities db;
         static CommentsRepository()
@@ -27,7 +27,7 @@ namespace Photohosting.Models
             db.SaveChanges();
         }
 
-        public static void Delete(int id)
+        public void Delete(int id)
         {
             db.Comments.Remove(GetComment(id));
             db.SaveChanges();
@@ -50,6 +50,37 @@ namespace Photohosting.Models
                     comments.Add(com);
             }
             return comments;
+        }
+
+        public IEnumerable<CommentsRepository> GetItemList()
+        {
+            throw new NotImplementedException();
+        }
+
+        public CommentsRepository GetItem(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Create(CommentsRepository item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(CommentsRepository item)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public void Save()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -27,4 +27,6 @@ namespace Photohosting.Views
             DataContext = new ErrorsViewModel();
         }
     }
+
+
 }

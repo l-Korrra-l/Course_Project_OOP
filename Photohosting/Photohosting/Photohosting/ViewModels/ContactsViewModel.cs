@@ -31,10 +31,17 @@ namespace Photohosting.ViewModels
             try
             {
                 Error err = new Error();
-                if (AccountsRepository.GetAccount(Properties.Settings.Default.IdUser) != null)
-                    err.Message = AccountsRepository.GetAccount(Properties.Settings.Default.IdUser).Name + ": ";
-                else err.Message = "Unknown user: ";
-                err.Message += Message;
+                    if (AccountsRepository.GetAccount(Properties.Settings.Default.IdUser) != null)
+                    {
+                        err.UName = AccountsRepository.GetAccount(Properties.Settings.Default.IdUser).Name;
+                        err.UId = Properties.Settings.Default.IdUser;
+                    }
+                    else
+                    {
+                        err.UName = "Unknown user";
+                        err.UId = -1;
+                    }
+                err.Message = Message;
                 err.Solved = false;
                 ErrorsRepository.AddError(err);
             }

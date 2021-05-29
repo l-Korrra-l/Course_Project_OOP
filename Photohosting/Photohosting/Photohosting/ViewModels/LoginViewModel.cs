@@ -9,12 +9,17 @@ using System.Windows;
 using System.Windows.Controls;
 using Photohosting.Models;
 using Photohosting.Views;
+using System.Runtime.Serialization.Json;
+using System.IO;
 
 namespace Photohosting.ViewModels
 {
     class LoginViewModel : BaseViewModel
     {
 
+        public LoginViewModel()
+        {
+        }
 
         private string login = "";
         public string Login
@@ -36,9 +41,17 @@ namespace Photohosting.ViewModels
                 OnPropertyChanged(nameof(Password));
             }
         }
-        public LoginViewModel()
+        private string errorMes;
+        public string ErrorMes
         {
+            get { return errorMes; }
+            set
+            {
+                this.errorMes = value;
+                OnPropertyChanged(nameof(ErrorMes));
+            }
         }
+
 
         public void CloseLoginWindow() => CloseWindow();
 
@@ -57,21 +70,34 @@ namespace Photohosting.ViewModels
                             string password = AccountsRepository.HashPassword(Password);
                             if (AccountsRepository.ContainsAccount(Login, password) || AccountsRepository.ContainsAccount(Login, Password))
                             {
+                                Account acc = AccountsRepository.GetAccount(Login, password) ?? AccountsRepository.GetAccount(Login, password);
+                                SetCurrentUser(acc);
                                 Properties.Settings.Default.IdUser = AccountsRepository.GetAccount(Login).UID;
                                 MainWindow _wind = new MainWindow();
                                 _wind.Show();
                                 AuthorizationWindowViewModel.Close();
 
                             }
-                            else MessageBox.Show("No such account found");
+                            else ErrorMes = "Аккаунт не найден";
                         }
                         catch (Exception e)
-                        { }
+                        {
+                            MessageBox.Show(e.Message);
+                        }
                     }
                     )
                     );
             }
 
+        }
+
+        public void SetCurrentUser(Account acc)
+        {
+            DataContractJsonSerializer jsonForm = new DataContractJsonSerializer(typeof(Account));
+            using (FileStream fs = new FileStream(@"..\..\Models\CurrentUser.json", FileMode.OpenOrCreate))
+            {
+                jsonForm.WriteObject(fs, acc);
+            }
         }
     }
 }

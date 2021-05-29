@@ -13,13 +13,13 @@
     <Grid Background="White" >
         <StackPanel  Orientation="Horizontal" VerticalAlignment="Top">
             <StackPanel  HorizontalAlignment="Left" VerticalAlignment="Center" Margin="60 0 0 0">
-                    <TextBlock Text="Edit profile" Foreground="Black" FontSize="24" FontFamily="Nirmala UI Semilight" Margin="0 40 0 0" VerticalAlignment="Top"/>
-                <TextBox Text="{Binding Mail, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="17" FontFamily="Nirmala UI Semilight" materialDesign:HintAssist.Hint="Email" Padding="5,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.HasClearButton="True"/>
-                <TextBox Text="{Binding Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="17" FontFamily="Nirmala UI Semilight" materialDesign:HintAssist.Hint="Name" Padding="5,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.HasClearButton="True"/>
-                <TextBox Text="{Binding LName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="17" FontFamily="Nirmala UI Semilight" materialDesign:HintAssist.Hint="Last Name" Padding="5,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.HasClearButton="True"/>
-                <TextBox Text="{Binding Phone, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="17" FontFamily="Nirmala UI Semilight" materialDesign:HintAssist.Hint="Phone number" Padding="5,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.HasClearButton="True"/>
-                <DatePicker HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Birthday date" SelectedDate="{Binding Bday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="17" FontFamily="Nirmala UI Semilight" Width="250"/>
-                    <Button HorizontalAlignment="Center" Content="Save changes" Command="{Binding EditProfileCommand}"  Margin="10,16,10.4,0" />
+                    <TextBlock Text="Редактирование" Foreground="Black" FontSize="24" FontFamily="Nirmala UI Semilight" Margin="0 40 0 0" VerticalAlignment="Top"/>
+                <TextBox Text="{Binding Mail, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="17" FontFamily="Nirmala UI Semilight" materialDesign:HintAssist.Hint="Почта" Padding="5,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.HasClearButton="True"/>
+                <TextBox Text="{Binding Name, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="17" FontFamily="Nirmala UI Semilight" materialDesign:HintAssist.Hint="Имя" Padding="5,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.HasClearButton="True"/>
+                <TextBox Text="{Binding LName, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="17" FontFamily="Nirmala UI Semilight" materialDesign:HintAssist.Hint="Фамилия" Padding="5,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.HasClearButton="True"/>
+                <TextBox Text="{Binding Phone, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="17" FontFamily="Nirmala UI Semilight" materialDesign:HintAssist.Hint="Контактный номер" Padding="5,0,0,0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:TextFieldAssist.HasClearButton="True"/>
+                <DatePicker HorizontalAlignment="Left" materialDesign:HintAssist.Hint="Дата рождения" SelectedDate="{Binding Bday, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="Black" FontSize="17" FontFamily="Nirmala UI Semilight" Width="250"/>
+                    <Button HorizontalAlignment="Center" Content="Сохранить изменения" Command="{Binding EditProfileCommand}"  Margin="10,16,10.4,0" />
             </StackPanel>
 
             <StackPanel Margin="60 50 0 0" VerticalAlignment="Center" >
@@ -33,7 +33,7 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                 </Ellipse>
-                <Button Grid.Row="1" Content="Change icon" Command="{Binding OpenImageCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" Width="150" VerticalAlignment="Bottom" Margin="0 -10 0 20"/>
+                <Button Grid.Row="1" Content="Изменить аватар" Command="{Binding OpenImageCommand}" Style="{StaticResource MaterialDesignOutlinedButton}" Width="150" VerticalAlignment="Bottom" Margin="0 -10 0 20"/>
             </StackPanel>
         </StackPanel>
     </Grid>

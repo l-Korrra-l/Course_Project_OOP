@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using DevExpress.Mvvm;
 using System.IO;
+using System.Runtime.Serialization.Json;
 
 namespace Photohosting.ViewModels
 {
@@ -65,9 +66,9 @@ namespace Photohosting.ViewModels
         public Visibility NoAdminVisibility
         {
             get {
-                if(AccountsRepository.GetAccount(Properties.Settings.Default.IdUser).IsAdmin != true)
+                //if(AccountsRepository.GetAccount(Properties.Settings.Default.IdUser).IsAdmin != true)
                    _noAdminVisibility = Visibility.Visible;
-                else _noAdminVisibility = Visibility.Collapsed;
+               // else _noAdminVisibility = Visibility.Collapsed;
                 return _noAdminVisibility;
             }
             set
@@ -183,6 +184,7 @@ namespace Photohosting.ViewModels
                     this.SelectedViewModel = new ContactsViewModel();
                     break;
                 case "Errors":
+                    this.SelectedViewModel = new ErrorsViewModel();
                     break;
                 case "Profiles":
                     this.SelectedViewModel = new AllAccountsViewModel();
@@ -203,16 +205,26 @@ namespace Photohosting.ViewModels
         {
             var authWindow = new AuthorizationWindow();
             authWindow.Show();
-
+            SetCurrentUser(new Account());
+            Properties.Settings.Default.IdUser = -1;
             if (window != null)
             {
                 window.Close();
             }
+            Application.Current.Windows[1].Close();
         }
         #endregion
         #endregion
 
-
+        public void SetCurrentUser(Account acc)
+        {
+            acc.UID = -1;
+            DataContractJsonSerializer jsonForm = new DataContractJsonSerializer(typeof(Account));
+            using (FileStream fs = new FileStream(@"..\..\Models\CurrentUser.json", FileMode.Create))
+            {
+                jsonForm.WriteObject(fs, acc);
+            }
+        }
 
     }
 }

@@ -67,4 +67,57 @@ namespace Photohosting.Properties
             }
         }
     }
+
+    /// <summary>
+    ///   Класс ресурсов со строгим типом для поиска локализованных строк и пр.
+    /// </summary>
+    //[global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.CopyOfResources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    //[global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    //[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    //internal class CopyOfResources
+    //{
+
+    //    private static global::System.CopyOfResources.ResourceManager resourceMan;
+
+    //    private static global::System.Globalization.CultureInfo resourceCulture;
+
+    //    [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+    //    internal CopyOfResources()
+    //    {
+    //    }
+
+    //    /// <summary>
+    //    ///   Возврат кэшированного экземпляра ResourceManager, используемого этим классом.
+    //    /// </summary>
+    //    [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+    //    internal static global::System.CopyOfResources.ResourceManager ResourceManager
+    //    {
+    //        get
+    //        {
+    //            if ((resourceMan == null))
+    //            {
+    //                global::System.CopyOfResources.ResourceManager temp = new global::System.CopyOfResources.ResourceManager("Photohosting.Properties.CopyOfResources", typeof(CopyOfResources).Assembly);
+    //                resourceMan = temp;
+    //            }
+    //            return resourceMan;
+    //        }
+    //    }
+
+    //    /// <summary>
+    //    ///   Переопределяет свойство CurrentUICulture текущего потока для всех
+    //    ///   подстановки ресурсов с помощью этого класса ресурсов со строгим типом.
+    //    /// </summary>
+    //    [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
+    //    internal static global::System.Globalization.CultureInfo Culture
+    //    {
+    //        get
+    //        {
+    //            return resourceCulture;
+    //        }
+    //        set
+    //        {
+    //            resourceCulture = value;
+    //        }
+    //    }
+    //}
 }

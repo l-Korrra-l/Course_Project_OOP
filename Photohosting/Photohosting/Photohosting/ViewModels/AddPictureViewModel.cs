@@ -141,19 +141,14 @@ namespace Photohosting.ViewModels
                 ErrorMes = "";
                 if (picture.Name == String.Empty || picture.Name == null || picture.MainTopic == String.Empty || picture.MainTopic == null || picture.Description == null || picture.Description == String.Empty || picture.Pic == null)
                 {
-                    MessageBox.Show("Field is empty");
+                    ErrorMes="Поле пустое";
                 }
                 else 
                 {
                     PicturesRepository.AddPicture(picture);
-                    MessageBox.Show("Picture was added", "ok!");
+                    MessageBox.Show("Опубликовано", "ok!");
                 }
             }
-            //catch (Exception ex)
-            //{
-            //    MessageBox.Show(ex.Message);
-            //    ErrorMes=ex.Message;
-            //}
             catch (DbEntityValidationException e)
             {
                 foreach (var eve in e.EntityValidationErrors)
@@ -165,6 +160,11 @@ namespace Photohosting.ViewModels
                         MessageBox.Show( ve.ErrorMessage);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                ErrorMes = ex.Message;
             }
         }
         public bool OnAddPicture()

@@ -16,10 +16,11 @@
                     <DropShadowEffect BlurRadius="10" Color="LightGray" ShadowDepth="5"/>
                 </Border.Effect>
                 <StackPanel >
-                    <TextBlock Text="Registration" FontSize="30" FontWeight="DemiBold" Margin="0 0 0 20"/>
-                    <TextBox x:Name="textboxLogin" materialDesign:HintAssist.Hint="Enter login" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Login}"/>
-                    <PasswordBox x:Name="PassdBox" materialDesign:HintAssist.Hint="Enter password" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" PasswordChanged="PasswordBox_PasswordChanged"/>
-                    <Button HorizontalAlignment="Center" Content="Registration" Margin="10,16,10.4,0" Style="{StaticResource MaterialDesignOutlinedButton}" Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=PasswordBox}"/>
+                    <TextBlock Text="Регистрация" FontSize="30" FontWeight="DemiBold" Margin="0 0 0 20"/>
+                    <TextBox x:Name="textboxLogin" materialDesign:HintAssist.Hint="Введите логин" Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding Login}"/>
+                    <PasswordBox x:Name="PassBox" materialDesign:HintAssist.Hint="Введите пароль" Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" PasswordChanged="PasswordBox_PasswordChanged"/>
+                    <TextBlock Margin="0 5 0 0" HorizontalAlignment="Center" TextAlignment="Center" Text="{Binding ErrorMes}" Foreground="red" Width="500" Style="{StaticResource MaterialDesignBody2TextBlock}" Height="25" />
+                    <Button HorizontalAlignment="Center" Content="Зарегистрироваться" Margin="10,16,10.4,0" Style="{StaticResource MaterialDesignOutlinedButton}" Command="{Binding RegisterCommand}" CommandParameter="{Binding ElementName=PasswordBox}"/>
                 </StackPanel>
             </Border>
         </Grid>

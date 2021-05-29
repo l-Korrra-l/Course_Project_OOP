@@ -32,4 +32,6 @@ namespace Photohosting.Views
             a.Password = PassBox.Password;
         }
     }
+
+
 }

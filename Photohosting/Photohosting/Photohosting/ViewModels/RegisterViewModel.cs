@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Photohosting.Models;
 using Photohosting.Views;
 using Photohosting.Commands;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows;
 using System.Windows.Media;
+using System.Runtime.Serialization.Json;
+using System.IO;
 
 namespace Photohosting.ViewModels
 {
@@ -44,6 +45,16 @@ namespace Photohosting.ViewModels
                 return true;
             return false;
         }
+        private string errorMes;
+        public string ErrorMes
+        {
+            get { return errorMes; }
+            set
+            {
+                this.errorMes = value;
+                OnPropertyChanged(nameof(ErrorMes));
+            }
+        }
 
         private bool Validate(object obj)
         {
@@ -51,17 +62,17 @@ namespace Photohosting.ViewModels
             string password = passwordBox.Password;
             if (password == null)
             {
-                MessageBox.Show("Enter password");
+                MessageBox.Show("Введите пароль");
                 return false;
             }
             if (Login == null)
             {
-                MessageBox.Show("Enter login");
+                MessageBox.Show("Введите логин");
                 return false;
             }
             if (!ValidatePassword(password))
             {
-                MessageBox.Show("Password must be between 8 and 15 characters, at least 1 number, upper and lowercase letters");
+                MessageBox.Show("Пароль: 8-15 символов, минимум одно число, большая и маленькая буква");
                 return false;
             }
             return true;
@@ -87,20 +98,31 @@ namespace Photohosting.ViewModels
                                 acc.Password = password;
                                 acc.IsAdmin = false;
                                 AccountsRepository.AddAccount(acc);
-
+                                SetCurrentUser(acc);
                                 MainWindow _wind = new MainWindow();
                                 _wind.Show();
                                 AuthorizationWindowViewModel.Close();
                             }
-                            else MessageBox.Show("No such account found");
+                            else ErrorMes="Пользователь существует";
                         }
                         catch(Exception e)
-                        { }
+                        {
+                            MessageBox.Show(e.Message);
+                        }
                     }
                     )
                     );
             } 
             
+        }
+
+        public void SetCurrentUser(Account acc)
+        {
+            DataContractJsonSerializer jsonForm = new DataContractJsonSerializer(typeof(Account));
+            using (FileStream fs = new FileStream(@"..\..\Models\CurrentUser.json", FileMode.OpenOrCreate))
+            {
+                jsonForm.WriteObject(fs, acc);
+            }
         }
     }
 }

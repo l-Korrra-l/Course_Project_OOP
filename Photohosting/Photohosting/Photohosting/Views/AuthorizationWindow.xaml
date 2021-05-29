@@ -47,9 +47,9 @@
             <TextBlock Text="Photohosting" Foreground="#FF7763C5" FontFamily="Modern No. 20" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="25" Grid.Column="1"/>
         </Grid>
         <ContentControl  Content="{Binding SelectedViewModel, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" />
-        <Button Grid.Row="2" Content="Registration" Margin="15 0 15 0" Height="30" Width="200" Style="{StaticResource MaterialDesignFlatLightBgButton}" Command="{Binding ToLoginCommand}" Visibility="{Binding ToLoginVisibility, UpdateSourceTrigger=PropertyChanged}">
+        <Button Grid.Row="2" Content="Перейти к регистрации" Margin="15 0 15 0" Height="30" Width="200" Style="{StaticResource MaterialDesignFlatLightBgButton}" Command="{Binding ToLoginCommand}" Visibility="{Binding ToLoginVisibility, UpdateSourceTrigger=PropertyChanged}">
         </Button>
-        <Button Grid.Row="2" Content="Login" Margin="15 0 15 0" Height="30" Width="200" Style="{StaticResource MaterialDesignFlatLightBgButton}" Command="{Binding ToRegisterCommand}" Visibility="{Binding ToRegistrationVisibility, UpdateSourceTrigger=PropertyChanged}">
+        <Button Grid.Row="2" Content="Перейти к авторизации" Margin="15 0 15 0" Height="30" Width="200" Style="{StaticResource MaterialDesignFlatLightBgButton}" Command="{Binding ToRegisterCommand}" Visibility="{Binding ToRegistrationVisibility, UpdateSourceTrigger=PropertyChanged}">
         </Button>
     </Grid>
 </Window>

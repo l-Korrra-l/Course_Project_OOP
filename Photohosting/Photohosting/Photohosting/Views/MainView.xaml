@@ -54,21 +54,21 @@
                         </Grid>
 
                     </materialDesign:ColorZone>
-                    <ComboBox SelectedIndex="0" Margin="20 -10 0 0" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Standard" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesignPaper}" Text="Topic"
+                    <ComboBox SelectedIndex="0" Margin="20 -10 0 0" BorderThickness="0" materialDesign:ColorZoneAssist.Mode="Standard" materialDesign:TextFieldAssist.UnderlineBrush="{DynamicResource MaterialDesignPaper}" Text="Тема"
         BorderBrush="{DynamicResource MaterialDesignPaper}" SelectedItem="{Binding Topic, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" >
-                        <ComboBoxItem Content="All"/>
-                        <ComboBoxItem Content="Anime"/>
-                        <ComboBoxItem Content="Cartoons"/>
-                        <ComboBoxItem Content="Games"/>
-                        <ComboBoxItem Content="IT"/>
-                        <ComboBoxItem Content="Memes"/>
-                        <ComboBoxItem Content="Movies"/>
-                        <ComboBoxItem Content="Music"/>
-                        <ComboBoxItem Content="Recepies"/>
-                        <ComboBoxItem Content="Sport"/>
-                        <ComboBoxItem Content="Tatoo"/>
-                        <ComboBoxItem Content="Traveling"/>
-                        <ComboBoxItem Content="Wallpapers"/>
+                        <ComboBoxItem Content="Аниме"/>
+                        
+                        <ComboBoxItem Content="Игры"/>
+                        <ComboBoxItem Content="ИТ"/>
+                        <ComboBoxItem Content="Мемы"/>
+                        <ComboBoxItem Content="Музыка"/>
+                        <ComboBoxItem Content="Мультфильмы"/>
+                        <ComboBoxItem Content="Обои"/>
+                        <ComboBoxItem Content="Путешествия"/>
+                        <ComboBoxItem Content="Рецепты"/>
+                        <ComboBoxItem Content="Спорт"/>
+                        <ComboBoxItem Content="Тату"/>
+                        <ComboBoxItem Content="Фильмы"/>
                     </ComboBox>
                 </StackPanel>
             </DockPanel>

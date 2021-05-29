@@ -15,7 +15,6 @@ namespace Photohosting.Models
             db = new PhotohostingEntities();
         }
 
-
         public static void AddError(Error err)
         {
                 db.Errors.Add(err);
@@ -51,5 +50,8 @@ namespace Photohosting.Models
             }
             return errors;
         }
+
     }
+
+   
 }

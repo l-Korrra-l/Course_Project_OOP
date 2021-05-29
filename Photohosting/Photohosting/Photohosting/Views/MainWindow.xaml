@@ -104,7 +104,7 @@
                     <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Home" TextDecorations="None">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Home" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
-                            <TextBlock Text="Home" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="Доомашняя страница" Margin="10" VerticalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </Hyperlink>
                 </ListViewItem>
@@ -122,7 +122,7 @@
                     <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Account" TextDecorations="None">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Cog" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
-                            <TextBlock Text="Account settings" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="Настройки аккаунта" Margin="10" VerticalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </Hyperlink>
                 </ListViewItem>
@@ -138,7 +138,7 @@
                     <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Add" TextDecorations="None">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="PhotoLibrary" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
-                            <TextBlock Text="Add Picture" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="Добавить изображение" Margin="10" VerticalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </Hyperlink>
                 </ListViewItem>
@@ -154,7 +154,7 @@
                     <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Contacts" TextDecorations="None">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Information" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
-                            <TextBlock Text="Contacts" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="Контакты" Margin="10" VerticalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </Hyperlink>
                 </ListViewItem>
@@ -170,7 +170,7 @@
                     <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Errors" TextDecorations="None">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="Error" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
-                            <TextBlock Text="Errors" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="Ошибки" Margin="10" VerticalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </Hyperlink>
                 </ListViewItem>
@@ -186,7 +186,7 @@
                     <Hyperlink Command="{Binding SelectedMenuCommand}" CommandParameter="Profiles" TextDecorations="None">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="AccountGroup" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
-                            <TextBlock Text="Profiles" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="Профили пользователей" Margin="10" VerticalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </Hyperlink>
                 </ListViewItem>
@@ -202,7 +202,7 @@
                     <Hyperlink Command="{Binding LogOutCommand}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}}" TextDecorations="None">
                         <StackPanel Orientation="Horizontal" Margin="10 0">
                             <materialDesign:PackIcon Kind="LogoutVariant" Width="30" Height="30" VerticalAlignment="Center" Margin="5" Foreground="White"/>
-                            <TextBlock Text="Log out" Margin="10" VerticalAlignment="Center" Foreground="White"/>
+                            <TextBlock Text="Выход" Margin="10" VerticalAlignment="Center" Foreground="White"/>
                         </StackPanel>
                     </Hyperlink>
                 </ListViewItem>
