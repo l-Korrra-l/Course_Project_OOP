@@ -30,7 +30,9 @@ namespace Photohosting.ViewModels
         #region Properties/Fields
         public string Name
         {
-            get { return account.Name; }
+            get { if (account?.Name == null)
+                    account.Name = "-";
+                return account.Name; }
             set
             {
                 account.Name = value;
@@ -39,7 +41,9 @@ namespace Photohosting.ViewModels
         }
         public string LName
         {
-            get { return account.LastName; }
+            get { if (account?.LastName == null)
+                    account.LastName = "-";
+                return account.LastName; }
             set
             {
                 account.LastName = value;
@@ -195,16 +199,18 @@ namespace Photohosting.ViewModels
         }
         public bool Validate()
         {
-            try
-            {
-                MailAddress mailAddress = new MailAddress(account.Email);
-                return true;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("invalid mail");
-                return false;
-            }
+            if (account.Email != null && account.Email != "" && account.Email != " " && account.Email !="почта")
+                try
+                {
+                    MailAddress mailAddress = new MailAddress(account.Email);
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("invalid mail");
+                    return false;
+                }
+            else return true;
         }
         #endregion
     }

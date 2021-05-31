@@ -81,7 +81,7 @@ namespace Photohosting.ViewModels
         {
             get {
 
-                if (AccountsRepository.GetAccount(Properties.Settings.Default.IdUser).IsAdmin == true)
+                if (AccountsRepository.GetAccount(Properties.Settings.Default.IdUser)?.IsAdmin == true)
                    _adminVisibility=Visibility.Visible;
                 else _adminVisibility = Visibility.Collapsed;
                 return _adminVisibility;

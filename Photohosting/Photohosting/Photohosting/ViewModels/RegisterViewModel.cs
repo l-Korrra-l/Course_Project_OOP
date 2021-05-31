@@ -58,16 +58,15 @@ namespace Photohosting.ViewModels
 
         private bool Validate(object obj)
         {
-            var passwordBox = obj as PasswordBox;
-            string password = passwordBox.Password;
-            if (password == null)
+            
+            if (Password == null)
             {
-                MessageBox.Show("Введите пароль");
+                ErrorMes="Введите пароль";
                 return false;
             }
             if (Login == null)
             {
-                MessageBox.Show("Введите логин");
+                ErrorMes = "Введите логин";
                 return false;
             }
             if (!ValidatePassword(password))
@@ -90,15 +89,21 @@ namespace Photohosting.ViewModels
                             //var passwordBox = obj as PasswordBox;
                             //string password = passwordBox.Password;
                             string password = AccountsRepository.HashPassword(Password);
-                            if (!(AccountsRepository.ContainsAccount(Login, password) || AccountsRepository.ContainsAccount(Login, Password)) && !Validate(obj))
+                            if ((!AccountsRepository.ContainsAccount(Login, password) && !AccountsRepository.ContainsAccount(Login, Password)) && Validate(obj))
                             {
 
                                 Account acc = new Account();
                                 acc.Login = Login;
-                                acc.Password = password;
+                                acc.Password = Password;
                                 acc.IsAdmin = false;
+                                acc.Pic = File.ReadAllBytes(Properties.Settings.Default.DefUser);
+                                acc.Name = "имя";
+                                acc.LastName = "фамилия";
+                                acc.Phone_Number = 0;
+                                acc.Email = "почта";
                                 AccountsRepository.AddAccount(acc);
                                 SetCurrentUser(acc);
+                                Properties.Settings.Default.IdUser = AccountsRepository.GetAccountl(acc.Login).UID;
                                 MainWindow _wind = new MainWindow();
                                 _wind.Show();
                                 AuthorizationWindowViewModel.Close();

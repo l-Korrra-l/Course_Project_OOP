@@ -21,8 +21,5 @@ namespace Photohosting.Models
         public string UName { get; set; }
         public byte[] UPic { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
-    
-        public virtual Account Account { get; set; }
-        public virtual Picture Picture { get; set; }
     }
 }

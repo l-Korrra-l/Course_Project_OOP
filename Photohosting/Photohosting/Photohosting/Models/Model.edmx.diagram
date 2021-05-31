@@ -4,15 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="40a5336ffda045b2b771e1112b5dae18" Name="Diagram1">
-        <EntityTypeShape EntityType="Photohosting.Account" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="Photohosting.Comment" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Photohosting.Error" Width="1.5" PointX="3" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Photohosting.Picture" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Photohosting.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="Photohosting.FK_Comments_Accounts" ManuallyRouted="false" />
-        <AssociationConnector Association="Photohosting.FK_Errors_Accounts" ManuallyRouted="false" />
-        <AssociationConnector Association="Photohosting.FK_Comments_Picture" ManuallyRouted="false" />
+      <Diagram DiagramId="c705e7179bf24417ae4f25135abacb97" Name="Diagram1">
+        <EntityTypeShape EntityType="Photohosting.Account" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Photohosting.Comment" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Photohosting.Error" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Photohosting.Picture" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Photohosting.sysdiagram" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

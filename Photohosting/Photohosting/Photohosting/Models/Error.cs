@@ -19,7 +19,5 @@ namespace Photohosting.Models
         public Nullable<bool> Solved { get; set; }
         public Nullable<int> UId { get; set; }
         public string UName { get; set; }
-    
-        public virtual Account Account { get; set; }
     }
 }

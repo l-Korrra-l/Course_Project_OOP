@@ -32,7 +32,7 @@ namespace Photohosting.Models
             }
 
         }
-        public static Account GetAccount(string login)
+        public static Account GetAccountl(string login)
         {
             if (db.Accounts.Where(p => (p.Login == login)).Count() != 0)
                 return db.Accounts.Where(p => (p.Login == login)).Single();

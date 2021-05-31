@@ -14,13 +14,6 @@ namespace Photohosting.Models
     
     public partial class Account
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Account()
-        {
-            this.Comments = new HashSet<Comment>();
-            this.Errors = new HashSet<Error>();
-        }
-    
         public int UID { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
@@ -32,10 +25,5 @@ namespace Photohosting.Models
         public byte[] Pic { get; set; }
         public string ImagePath { get; set; }
         public Nullable<bool> IsAdmin { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Comment> Comments { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Error> Errors { get; set; }
     }
 }

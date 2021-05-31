@@ -35,7 +35,7 @@ namespace Photohosting.ViewModels
         {
             get
             {
-                if (Properties.Settings.Default.IdUser == null)
+                if (Properties.Settings.Default.IdUser == null || AccountsRepository.GetAccount(Properties.Settings.Default.IdUser).Pic==null)
                     return File.ReadAllBytes(Properties.Settings.Default.DefUser);
                 else
                     return AccountsRepository.GetAccount(Properties.Settings.Default.IdUser).Pic;

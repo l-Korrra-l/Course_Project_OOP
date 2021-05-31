@@ -26,5 +26,6 @@ namespace Photohosting.Views
             InitializeComponent();
             DataContext = new MainViewModel();
         }
+
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Runtime.Serialization.Json;
 using System.Windows;
+using System.Runtime.Serialization;
 
 namespace Photohosting.ViewModels
 {
@@ -129,7 +130,8 @@ namespace Photohosting.ViewModels
                 }
                 else
                 {
-                    UsersPictures.Remove(picture);
+                   
+                    Del(picture);
                     SetItems(UsersPictures);
                 }
             }
@@ -178,11 +180,13 @@ namespace Photohosting.ViewModels
         }
         public void SetItems(ObservableCollection<Picture> pictures)
         {
+           
             DataContractJsonSerializer jsonForm = new DataContractJsonSerializer(typeof(ObservableCollection<Picture>));
+
             using (FileStream fs = new FileStream(@"..\..\Walls\"+Properties.Settings.Default.IdUser + ".json", FileMode.OpenOrCreate))
             {
                 jsonForm.WriteObject(fs, pictures);
-                Console.WriteLine("Data has been saved to file");
+               // MessageBox.Show("Data has been saved to file");
             }
         }
         public void ContainsPicture()
@@ -192,6 +196,15 @@ namespace Photohosting.ViewModels
                 if (pic.PID == this.picture.PID)
                     i= true;
             SavePicture = i;
+        }
+        public void Del(Picture pic)
+        {
+            ObservableCollection<Picture> list = new ObservableCollection<Picture>();
+            foreach (Picture p in UsersPictures)
+                if (p.PID != pic.PID) list.Add(p);
+            UsersPictures.Clear();
+            foreach (Picture p in list)
+                 UsersPictures.Add(p);
         }
         #endregion
     }

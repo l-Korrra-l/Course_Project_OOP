@@ -59,42 +59,6 @@
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
   </EntityType>
-  <Association Name="FK_Comments_Accounts">
-    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
-    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Accounts">
-        <PropertyRef Name="UID" />
-      </Principal>
-      <Dependent Role="Comments">
-        <PropertyRef Name="UId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comments_Picture">
-    <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
-    <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Picture">
-        <PropertyRef Name="PID" />
-      </Principal>
-      <Dependent Role="Comments">
-        <PropertyRef Name="PId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Errors_Accounts">
-    <End Role="Accounts" Type="Self.Accounts" Multiplicity="0..1" />
-    <End Role="Errors" Type="Self.Errors" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Accounts">
-        <PropertyRef Name="UID" />
-      </Principal>
-      <Dependent Role="Errors">
-        <PropertyRef Name="UId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
   <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -132,17 +96,5 @@
     <EntitySet Name="Errors" EntityType="Self.Errors" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Picture" EntityType="Self.Picture" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK_Comments_Accounts" Association="Self.FK_Comments_Accounts">
-      <End Role="Accounts" EntitySet="Accounts" />
-      <End Role="Comments" EntitySet="Comments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comments_Picture" Association="Self.FK_Comments_Picture">
-      <End Role="Picture" EntitySet="Picture" />
-      <End Role="Comments" EntitySet="Comments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Errors_Accounts" Association="Self.FK_Errors_Accounts">
-      <End Role="Accounts" EntitySet="Accounts" />
-      <End Role="Errors" EntitySet="Errors" />
-    </AssociationSet>
   </EntityContainer>
 </Schema>

@@ -157,7 +157,6 @@
     <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\AccountRepository.cs" />
     <Compile Include="ViewModels\AccountViewModel.cs" />
     <Compile Include="ViewModels\AddPictureViewModel.cs" />
     <Compile Include="ViewModels\AllAccountsViewModel.cs" />

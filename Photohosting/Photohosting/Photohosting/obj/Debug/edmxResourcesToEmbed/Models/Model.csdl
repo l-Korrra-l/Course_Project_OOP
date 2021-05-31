@@ -15,8 +15,6 @@
     <Property Name="Pic" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="ImagePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="IsAdmin" Type="Boolean" />
-    <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Accounts" FromRole="Accounts" ToRole="Comments" />
-    <NavigationProperty Name="Errors" Relationship="Self.FK_Errors_Accounts" FromRole="Accounts" ToRole="Errors" />
   </EntityType>
   <EntityType Name="Comment">
     <Key>
@@ -29,8 +27,6 @@
     <Property Name="UName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="UPic" Type="Binary" MaxLength="Max" FixedLength="false" />
     <Property Name="Date" Type="DateTime" Precision="3" />
-    <NavigationProperty Name="Account" Relationship="Self.FK_Comments_Accounts" FromRole="Comments" ToRole="Accounts" />
-    <NavigationProperty Name="Picture" Relationship="Self.FK_Comments_Picture" FromRole="Comments" ToRole="Picture" />
   </EntityType>
   <EntityType Name="Error">
     <Key>
@@ -41,7 +37,6 @@
     <Property Name="Solved" Type="Boolean" />
     <Property Name="UId" Type="Int32" />
     <Property Name="UName" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Account" Relationship="Self.FK_Errors_Accounts" FromRole="Errors" ToRole="Accounts" />
   </EntityType>
   <EntityType Name="Picture">
     <Key>
@@ -53,7 +48,6 @@
     <Property Name="MainTopic" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
     <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
     <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="Comments" Relationship="Self.FK_Comments_Picture" FromRole="Picture" ToRole="Comments" />
   </EntityType>
   <EntityType Name="sysdiagram">
     <Key>
@@ -65,60 +59,12 @@
     <Property Name="version" Type="Int32" />
     <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
   </EntityType>
-  <Association Name="FK_Comments_Accounts">
-    <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
-    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Accounts">
-        <PropertyRef Name="UID" />
-      </Principal>
-      <Dependent Role="Comments">
-        <PropertyRef Name="UId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Errors_Accounts">
-    <End Role="Accounts" Type="Self.Account" Multiplicity="0..1" />
-    <End Role="Errors" Type="Self.Error" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Accounts">
-        <PropertyRef Name="UID" />
-      </Principal>
-      <Dependent Role="Errors">
-        <PropertyRef Name="UId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_Comments_Picture">
-    <End Role="Picture" Type="Self.Picture" Multiplicity="1" />
-    <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Picture">
-        <PropertyRef Name="PID" />
-      </Principal>
-      <Dependent Role="Comments">
-        <PropertyRef Name="PId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="PhotohostingEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Accounts" EntityType="Self.Account" />
     <EntitySet Name="Comments" EntityType="Self.Comment" />
     <EntitySet Name="Errors" EntityType="Self.Error" />
     <EntitySet Name="Pictures" EntityType="Self.Picture" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-    <AssociationSet Name="FK_Comments_Accounts" Association="Self.FK_Comments_Accounts">
-      <End Role="Accounts" EntitySet="Accounts" />
-      <End Role="Comments" EntitySet="Comments" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Errors_Accounts" Association="Self.FK_Errors_Accounts">
-      <End Role="Accounts" EntitySet="Accounts" />
-      <End Role="Errors" EntitySet="Errors" />
-    </AssociationSet>
-    <AssociationSet Name="FK_Comments_Picture" Association="Self.FK_Comments_Picture">
-      <End Role="Picture" EntitySet="Pictures" />
-      <End Role="Comments" EntitySet="Comments" />
-    </AssociationSet>
     <FunctionImport Name="sp_alterdiagram">
       <Parameter Name="diagramname" Mode="In" Type="String" />
       <Parameter Name="owner_id" Mode="In" Type="Int32" />

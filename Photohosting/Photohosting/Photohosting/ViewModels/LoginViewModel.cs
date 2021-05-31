@@ -72,7 +72,7 @@ namespace Photohosting.ViewModels
                             {
                                 Account acc = AccountsRepository.GetAccount(Login, password) ?? AccountsRepository.GetAccount(Login, password);
                                 SetCurrentUser(acc);
-                                Properties.Settings.Default.IdUser = AccountsRepository.GetAccount(Login).UID;
+                                Properties.Settings.Default.IdUser = AccountsRepository.GetAccountl(Login).UID;
                                 MainWindow _wind = new MainWindow();
                                 _wind.Show();
                                 AuthorizationWindowViewModel.Close();

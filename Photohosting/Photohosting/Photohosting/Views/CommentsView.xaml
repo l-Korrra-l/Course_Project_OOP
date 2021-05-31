@@ -35,7 +35,7 @@
                 </ItemsControl.ItemsPanel>
             </ListBox>
         </ScrollViewer>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Ellipse Height="30" Width="30"  HorizontalAlignment="Right" Margin="20 100" Stroke="White">
                 <Ellipse.Fill>
                     <ImageBrush ImageSource="{Binding Path=BinImage}" Stretch="UniformToFill"/>
